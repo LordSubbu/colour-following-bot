@@ -8,26 +8,28 @@ const int out = 10;
 int red = 0;  
 int green = 0;  
 int blue = 0;  
-#define LM1 5 // left motor M1a
-#define LM2 4 // left motor M2a
-#define RM1 7 // right motor M2a
-#define RM2 6 // right motor M2b
+#define M1 4  // left motor M1a
+#define M2 5 // left motor M2a
+#define M3 6 // right motor M2a
+#define M4 7 // right motor M2b
     
 void setup()   
 {  
   Serial.begin(9600); 
+  //colour sensor pins
   pinMode(s0, OUTPUT);  
   pinMode(s1, OUTPUT);  
   pinMode(s2, OUTPUT);  
   pinMode(s3, OUTPUT);  
   pinMode(out, INPUT);  
-      
   digitalWrite(s0, HIGH);  
   digitalWrite(s1, HIGH);  
-pinMode(LM1, OUTPUT);
-pinMode(LM2, OUTPUT);
-pinMode(RM1, OUTPUT);
-pinMode(RM2, OUTPUT);
+  
+  //Motor Driver pins  
+  pinMode(M1, OUTPUT);
+  pinMode(M2, OUTPUT);
+  pinMode(M3, OUTPUT);
+  pinMode(M4, OUTPUT);
 }  
     
 void loop() 
@@ -46,28 +48,28 @@ void loop()
     if(-15<=red-green || red-green <=15)
     {
       Serial.println("Yellow colour");
-      digitalWrite(LM1, HIGH);
-      digitalWrite(LM2, LOW);
-      digitalWrite(RM1, HIGH);
-      digitalWrite(RM2, LOW);
+      digitalWrite(M1, HIGH);
+      digitalWrite(M2, LOW);
+      digitalWrite(M3, HIGH);
+      digitalWrite(M4, LOW);
     }
   }
   if(red <=20  || blue <= 20 || green <= 20)
   {
     Serial.println("White colour");
-    digitalWrite(LM1, HIGH);
-    digitalWrite(LM2, LOW);
-    digitalWrite(RM1, HIGH);
-    digitalWrite(RM2, LOW);
+    digitalWrite(M1, HIGH);
+    digitalWrite(M2, LOW);
+    digitalWrite(M3, HIGH);
+    digitalWrite(M4, LOW);
   }
   else{
   Serial.println("NO COLOUR");  
   }
   delay(300);   
-  digitalWrite(LM1, LOW);
-  digitalWrite(LM2, LOW);
-  digitalWrite(RM1, LOW);
-  digitalWrite(RM2, LOW);
+  digitalWrite(M1, LOW);
+  digitalWrite(M2, LOW);
+  digitalWrite(M3, LOW);
+  digitalWrite(M4, LOW);
  }  
     
 void color()  
